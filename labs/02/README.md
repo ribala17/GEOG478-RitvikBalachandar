@@ -1,3 +1,3 @@
 # Lab 02
 
-**Student Name:** Ritvi
+**Student Name:** Ritvik Balachandar

@@ -1,6 +1,6 @@
 # GEOG 478 - WebGIS
 
-**Student Name:** Ritvi
+**Student Name:** Ritvik Balachandar
 
 ## Labs
 
