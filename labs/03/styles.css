@@ -28,6 +28,9 @@ header {
     margin-bottom: 25px;
     padding-bottom: 20px;
     border-bottom: 3px solid #500000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -37,6 +40,8 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 700;
+    text-align: center;
+    width: 100%;
 }
 
 .tagline {
@@ -45,6 +50,8 @@ h1 {
     font-style: italic;
     margin-bottom: 15px;
     letter-spacing: 1px;
+    text-align: center;
+    width: 100%;
 }
 
 .contact-info {
@@ -54,6 +61,7 @@ h1 {
     gap: 20px;
     font-size: 0.95em;
     color: #444444;
+    width: 100%;
 }
 
 .contact-info span {
