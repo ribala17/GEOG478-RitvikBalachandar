@@ -71,6 +71,6 @@ This folder contains three HTML web mapping files created for TAMU WebGIS Lab 6.
 
 ## Author:
 
-[Student Name]
+Ritvik Balachandar
 TAMU WebGIS Course - Lab 6
-Date: [Current Date]
+Date: April 4, 2026
