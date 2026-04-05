@@ -85,18 +85,27 @@
       crossorigin=""></script>
 
     <script>
-      // TAMU coordinates: 30.6188, -96.3365
-      var map = L.map('mapid', {
-        zoomControl: true,
-        preferCanvas: true
-      }).setView([30.6188, -96.3365], 15);
+      // Wait for DOM to be fully loaded
+      window.addEventListener('load', function() {
+        // TAMU coordinates: 30.6188, -96.3365
+        var map = L.map('mapid', {
+          zoomControl: true,
+          preferCanvas: true,
+          attributionControl: true
+        }).setView([30.6188, -96.3365], 15);
 
-      // Using OpenStreetMap tiles instead of Mapbox (no token needed)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
-        crossOrigin: ''
-      }).addTo(map);
+        // Using OpenStreetMap tiles instead of Mapbox (no token needed)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 19,
+          minZoom: 1,
+          crossOrigin: ''
+        }).addTo(map);
+
+        // Recalculate map size
+        setTimeout(function() {
+          map.invalidateSize();
+        }, 200);
 
       // Create info control
       var info = L.control();
@@ -186,6 +195,7 @@
 
       // Add a scale
       L.control.scale().addTo(map);
+      });
     </script>
 </body>
 </html>
