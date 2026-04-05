@@ -6,43 +6,76 @@
       integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAcEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
       crossorigin=""/>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
-        padding: 10px;
+        padding: 0;
+        background: linear-gradient(135deg, #f5f5f5 0%, #efefef 100%);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        background: white;
+        min-height: 100vh;
+        border-radius: 8px 8px 0 0;
       }
       h1 {
         color: #800000;
-        margin: 5px 0 15px 0;
+        font-size: 28px;
+        margin: 0 0 10px 0;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .subtitle {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 25px;
       }
       #mapid {
-        height: 600px;
+        height: 650px;
         width: 100%;
-        border: 2px solid #800000;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(128,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
       }
       .info {
-        padding: 6px 8px;
-        font: 14px/16px Arial, Helvetica, sans-serif;
+        padding: 10px 14px;
+        font: 13px/1.6 'Segoe UI', sans-serif;
         background: white;
-        background: rgba(255,255,255,0.95);
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        border-radius: 5px;
-        border-left: 4px solid #800000;
+        background: rgba(255,255,255,0.97);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        border-radius: 6px;
+        border-left: 5px solid #800000;
       }
       .info h4 {
-        margin: 0 0 5px;
+        margin: 0 0 10px;
         color: #800000;
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 14px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 8px;
       }
       .info p {
-        margin: 5px 0;
+        margin: 6px 0;
         color: #333;
+      }
+      .info p b {
+        color: #800000;
       }
     </style>
 </head>
 <body>
-    <h1>Ritvik Balachandar TAMU Map</h1>
-    <div id="mapid"></div>
+    <div class="container">
+        <h1>TAMU Campus Map</h1>
+        <p class="subtitle">Ritvik Balachandar • Interactive view of Texas A&M University buildings • Hover for details, click to zoom</p>
+        <div id="mapid"></div>
+    </div>
 
     <!-- Include the TAMU buildings GeoJSON file -->
     <script type="text/javascript" src="tamubuildings.js"></script>
@@ -53,12 +86,16 @@
 
     <script>
       // TAMU coordinates: 30.6188, -96.3365
-      var map = L.map('mapid').setView([30.6188, -96.3365], 15);
+      var map = L.map('mapid', {
+        zoomControl: true,
+        preferCanvas: true
+      }).setView([30.6188, -96.3365], 15);
 
       // Using OpenStreetMap tiles instead of Mapbox (no token needed)
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
+        maxZoom: 19,
+        crossOrigin: ''
       }).addTo(map);
 
       // Create info control
