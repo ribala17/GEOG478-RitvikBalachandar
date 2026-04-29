@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Station Weekly Temperature Forecast</title>
+    <script src="./node_modules/highcharts/highcharts.js"></script>
+    <script src="./node_modules/highcharts/modules/series-label.js"></script>
+    <script src="./node_modules/highcharts/modules/exporting.js"></script>
+    <style>
+        #container {
+            min-width: 310px;
+            max-width: 900px;
+            height: 500px;
+            margin: 40px auto;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7;
+            color: #333;
+        }
+
+        .page-wrapper {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        p.description {
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <h1>College Station Weekly Temperature Forecast</h1>
+        <p class="description">Daily high and low temperatures for the upcoming week in College Station, Texas.</p>
+        <div id="container"></div>
+    </div>
+
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Weekly Temperature Forecast'
+            },
+            subtitle: {
+                text: 'College Station, TX'
+            },
+            xAxis: {
+                categories: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                title: {
+                    text: 'Day of Week'
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Temperature (�F)'
+                },
+                min: 40
+            },
+            tooltip: {
+                shared: true,
+                valueSuffix: ' �F'
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{
+                name: 'Highest (�F)',
+                data: [82, 81, 81, 70, 77, 78, 79, 80],
+                color: '#ff4d4d'
+            }, {
+                name: 'Lowest (�F)',
+                data: [67, 59, 50, 47, 51, 60, 66, 66],
+                color: '#4d79ff'
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 600
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            },
+            exporting: {
+                enabled: true
+            }
+        });
+    </script>
+</body>
+</html>

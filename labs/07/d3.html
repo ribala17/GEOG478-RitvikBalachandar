@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Station Weekly Temperature - D3</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chart-title {
+            text-align: center;
+        }
+
+        .bar-high {
+            background-color: steelblue;
+            color: white;
+            padding: 5px;
+            margin: 3px;
+            text-align: right;
+        }
+
+        .bar-low {
+            background-color: orange;
+            color: white;
+            padding: 5px;
+            margin: 3px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="chart-title">College Station Weekly Temperature Forecast (D3)</h2>
+
+<h3>Highest Temperatures (°F)</h3>
+<div id="highs"></div>
+
+<h3>Lowest Temperatures (°F)</h3>
+<div id="lows"></div>
+
+<script>
+    var highTemps = [82, 81, 81, 70, 77, 78, 79, 80];
+    var lowTemps = [67, 59, 50, 47, 51, 60, 66, 66];
+    var days = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    d3.select("#highs")
+        .selectAll("div")
+        .data(highTemps)
+        .enter()
+        .append("div")
+        .attr("class", "bar-high")
+        .style("width", function(d) { return d * 5 + "px"; })
+        .text(function(d, i) { return days[i] + ": " + d + "°F"; });
+
+    d3.select("#lows")
+        .selectAll("div")
+        .data(lowTemps)
+        .enter()
+        .append("div")
+        .attr("class", "bar-low")
+        .style("width", function(d) { return d * 5 + "px"; })
+        .text(function(d, i) { return days[i] + ": " + d + "°F"; });
+</script>
+
+</body>
+</html>
