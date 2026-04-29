@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TAMU Campus Boundary</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.6/"></script>
+
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+<div id="viewDiv"></div>
+
+<script>
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  "esri/layers/FeatureLayer",
+  "dojo/domReady!"
+], function(Map, MapView, FeatureLayer) {
+
+  var map = new Map({
+    basemap: "streets"
+  });
+
+  var view = new MapView({
+    container: "viewDiv",
+    map: map,
+    center: [-96.345, 30.616],
+    zoom: 14
+  });
+
+  var featureLayer = new FeatureLayer({
+    url: "https://services1.arcgis.com/qr14biwnHA6Vis6l/arcgis/rest/services/TAMU_Campus_Boundary/FeatureServer/0"
+  });
+
+  var popupTemplate = {
+    title: "{Name}",
+    actions: [{
+      id: "find"
+    }],
+    content: [{
+      type: "fields",
+      fieldInfos: [{
+        fieldName: "Name"
+      }, {
+        fieldName: "City"
+      }, {
+        fieldName: "ACRES_CALC"
+      }]
+    }]
+  };
+
+  featureLayer.popupTemplate = popupTemplate;
+
+  map.add(featureLayer);
+
+});
+</script>
+
+</body>
+</html>
